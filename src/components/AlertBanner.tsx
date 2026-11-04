@@ -41,7 +41,7 @@ export const AlertBanner: React.FC<AlertBannerProps> = ({
       const permission = await Notification.requestPermission();
       setNotificationStatus(permission);
       if (permission === 'granted') {
-        new Notification('Maryland Business Hub Alert Active', {
+        new Notification('BizBooster MD Alert Active', {
           body: `Upcoming deadline: ${urgentDeadline.title} on ${urgentDeadline.dateStr} (${diffDays} days away).`,
           icon: '/favicon.ico',
         });

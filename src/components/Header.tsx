@@ -67,10 +67,10 @@ export const Header: React.FC<HeaderProps> = ({
                 </div>
                 <div>
                   <span className="text-base sm:text-lg font-bold tracking-tight text-slate-900 group-hover:text-amber-700 transition-colors">
-                    Maryland Business Hub
+                    BizBooster <span className="text-amber-700 font-semibold text-sm">MD</span>
                   </span>
                   <div className="hidden sm:block text-[11px] text-slate-500 font-medium leading-none">
-                    Statewide Compliance & Licensing
+                    Maryland Small Business Compliance
                   </div>
                 </div>
               </div>

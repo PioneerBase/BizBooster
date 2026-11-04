@@ -66,7 +66,7 @@ export function generateCompliancePdf(
     doc.setFontSize(8);
     doc.setTextColor(148, 163, 184);
     doc.text(
-      'Generated locally via Maryland Business Compliance Hub · Grounded in Maryland Small Business Guide (Nov 2026)',
+      'Generated locally via BizBooster Maryland · Grounded in Maryland Small Business Guide (Nov 2026)',
       40,
       768
     );
@@ -93,7 +93,7 @@ export function generateCompliancePdf(
   doc.setFont('helvetica', 'bold');
   doc.setFontSize(12);
   doc.setTextColor(254, 243, 199);
-  doc.text('SMALL BUSINESS COMPLIANCE & LICENSING RECORD', 54, 88);
+  doc.text('BIZBOOSTER MARYLAND — SMALL BUSINESS COMPLIANCE RECORD', 54, 88);
 
   doc.setFont('helvetica', 'normal');
   doc.setFontSize(8.5);

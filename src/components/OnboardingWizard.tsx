@@ -92,12 +92,12 @@ export const OnboardingWizard: React.FC<OnboardingWizardProps> = ({
         <div className="bg-slate-900 text-white px-6 py-5 shrink-0 flex items-center justify-between">
           <div className="space-y-1">
             <div className="flex items-center gap-2 text-xs font-semibold text-amber-400 uppercase tracking-wider">
-              <span>Maryland Small Business Field Guide</span>
+              <span>BizBooster Maryland</span>
               <span className="text-slate-600">·</span>
-              <span>Sequence Onboarding</span>
+              <span>Startup Onboarding</span>
             </div>
             <h1 className="text-lg sm:text-xl font-bold tracking-tight text-white">
-              Setup Your Maryland Startup Roadmap
+              Setup Your BizBooster Maryland Roadmap
             </h1>
           </div>
 

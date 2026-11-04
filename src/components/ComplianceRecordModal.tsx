@@ -59,7 +59,7 @@ export const ComplianceRecordModal: React.FC<ComplianceRecordModalProps> = ({
       const doc = generateCompliancePdf(profile, checklistItems, deadlines);
       const safeName = sanitizeFilename(profile.businessName);
       const dateStr = new Date().toISOString().split('T')[0];
-      const filename = `Maryland_Compliance_Record_${safeName}_${dateStr}.pdf`;
+      const filename = `BizBooster_MD_Compliance_Record_${safeName}_${dateStr}.pdf`;
       doc.save(filename);
       setDownloadSuccess(true);
       setTimeout(() => setDownloadSuccess(false), 4000);
@@ -73,7 +73,7 @@ export const ComplianceRecordModal: React.FC<ComplianceRecordModalProps> = ({
 
   const handleExportJson = () => {
     const backupData = {
-      app: 'Maryland Business Compliance Hub',
+      app: 'BizBooster Maryland',
       version: '1.0',
       exportDate: new Date().toISOString(),
       profile,
@@ -84,7 +84,7 @@ export const ComplianceRecordModal: React.FC<ComplianceRecordModalProps> = ({
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = `MD_Compliance_Backup_${sanitizeFilename(profile.businessName)}.json`;
+    a.download = `BizBooster_MD_Backup_${sanitizeFilename(profile.businessName)}.json`;
     a.click();
     URL.revokeObjectURL(url);
   };

@@ -359,7 +359,7 @@ export default function App() {
       <footer className="border-t border-slate-200 bg-white py-8 px-4 sm:px-6 lg:px-8 mt-12">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-slate-500">
           <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-4 text-center sm:text-left">
-            <span className="font-bold text-slate-700">Maryland Business Compliance Hub</span>
+            <span className="font-bold text-slate-700">BizBooster Maryland</span>
             <span className="hidden sm:inline text-slate-300">|</span>
             <span>Based on the Maryland Small Business Startup Checklist & Licensing Guide (Nov 2026)</span>
           </div>
