@@ -1,0 +1,6 @@
+{
+  "name": "Maryland Business Compliance & Licensing Hub",
+  "description": "A comprehensive compliance dashboard for Maryland entrepreneurs to navigate licensing, track local tax metrics, automate deadline alerts, and master state startup requirements.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
