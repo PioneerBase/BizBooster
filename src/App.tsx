@@ -394,12 +394,23 @@ export default function App() {
         </div>
         <div className="max-w-7xl mx-auto mt-4 pt-3 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between text-[11px] text-slate-400 gap-2">
           <span>Local Device Privacy: All compliance tracking data is stored strictly in your browser (v1). Zero server transmission.</span>
-          <button
-            onClick={() => setIsComplianceRecordOpen(true)}
-            className="hover:text-slate-600 underline cursor-pointer"
-          >
-            Manage Local Data & Backups
-          </button>
+          <div className="flex items-center gap-3">
+            <a
+              href="https://pioneerbase.github.io/BizBooster/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-amber-800 hover:text-amber-950 font-medium hover:underline"
+            >
+              pioneerbase.github.io/BizBooster
+            </a>
+            <span className="text-slate-300">·</span>
+            <button
+              onClick={() => setIsComplianceRecordOpen(true)}
+              className="hover:text-slate-600 underline cursor-pointer"
+            >
+              Manage Local Data & Backups
+            </button>
+          </div>
         </div>
       </footer>
 

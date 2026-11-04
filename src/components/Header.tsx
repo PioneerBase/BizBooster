@@ -113,11 +113,12 @@ export const Header: React.FC<HeaderProps> = ({
 
             <button
               onClick={onOpenPdf}
-              title="View Maryland Startup Guide PDF"
-              className="hidden md:flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-slate-700 hover:text-slate-900 bg-white hover:bg-slate-50 border border-slate-200 rounded-lg transition-colors cursor-pointer whitespace-nowrap"
+              title="View Maryland Startup Guide (8-Page PDF)"
+              className="flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 text-xs font-semibold text-slate-700 hover:text-slate-900 bg-white hover:bg-slate-50 border border-slate-200 rounded-lg transition-colors cursor-pointer whitespace-nowrap"
             >
               <FileText className="w-3.5 h-3.5 text-amber-600" />
-              <span>Guide PDF</span>
+              <span className="hidden sm:inline">Maryland Guide (PDF)</span>
+              <span className="sm:hidden">Guide</span>
             </button>
 
             <button
@@ -165,10 +166,20 @@ export const Header: React.FC<HeaderProps> = ({
           <div className="pt-2 border-t border-slate-100 space-y-1">
             <button
               onClick={() => {
+                onOpenPdf();
+                setMobileMenuOpen(false);
+              }}
+              className="flex items-center gap-2 px-3 py-2 text-xs font-semibold text-slate-800 bg-amber-50/70 hover:bg-amber-100/70 rounded-lg w-full"
+            >
+              <FileText className="w-4 h-4 text-amber-600" />
+              <span>Maryland Startup Guide & Licensing (PDF)</span>
+            </button>
+            <button
+              onClick={() => {
                 onOpenComplianceRecord();
                 setMobileMenuOpen(false);
               }}
-              className="flex items-center gap-2 px-3 py-2 text-xs font-semibold text-slate-900 bg-amber-50 hover:bg-amber-100 rounded-lg w-full"
+              className="flex items-center gap-2 px-3 py-2 text-xs font-semibold text-slate-900 bg-slate-50 hover:bg-slate-100 rounded-lg w-full"
             >
               <FileDown className="w-4 h-4 text-amber-700" />
               <span>Download Compliance Record (PDF)</span>

@@ -49,9 +49,10 @@ export const DonateModal: React.FC<DonateModalProps> = ({ isOpen, onClose }) => 
   ];
 
   const effectiveAmount = customAmount ? Number(customAmount) || 0 : selectedTier;
+  const APP_URL = 'https://pioneerbase.github.io/BizBooster/';
 
   const handleCopyLink = () => {
-    navigator.clipboard.writeText(window.location.href);
+    navigator.clipboard.writeText(APP_URL);
     setCopied(true);
     setTimeout(() => setCopied(false), 2500);
   };
@@ -194,13 +195,13 @@ export const DonateModal: React.FC<DonateModalProps> = ({ isOpen, onClose }) => 
                 </a>
 
                 <a
-                  href="https://github.com/sponsors"
+                  href="https://github.com/pioneerbase"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center justify-center gap-1.5 py-2 px-3 bg-slate-100 hover:bg-slate-200 text-slate-800 border border-slate-200 rounded-lg font-medium transition-colors"
                 >
                   <Heart className="w-3.5 h-3.5 text-rose-600 fill-current" />
-                  <span>GitHub Sponsors</span>
+                  <span>GitHub (@pioneerbase)</span>
                 </a>
               </div>
             </div>
@@ -230,16 +231,30 @@ export const DonateModal: React.FC<DonateModalProps> = ({ isOpen, onClose }) => 
             </form>
 
             {/* Share link alternative */}
-            <div className="pt-2 flex items-center justify-between text-xs text-slate-500 border-t border-slate-100">
-              <span>Can’t donate? Sharing helps just as much!</span>
-              <button
-                type="button"
-                onClick={handleCopyLink}
-                className="flex items-center gap-1 text-slate-700 hover:text-slate-900 font-medium cursor-pointer"
-              >
-                {copied ? <Check className="w-3.5 h-3.5 text-emerald-600" /> : <Copy className="w-3.5 h-3.5" />}
-                <span>{copied ? 'Link Copied!' : 'Copy Share Link'}</span>
-              </button>
+            <div className="pt-3 border-t border-slate-100 space-y-2">
+              <div className="flex items-center justify-between text-xs text-slate-600">
+                <span className="font-semibold text-slate-800">Share BizBooster Maryland:</span>
+                <button
+                  type="button"
+                  onClick={handleCopyLink}
+                  className="flex items-center gap-1 text-xs font-bold text-amber-700 hover:text-amber-800 cursor-pointer"
+                >
+                  {copied ? <Check className="w-3.5 h-3.5 text-emerald-600" /> : <Copy className="w-3.5 h-3.5" />}
+                  <span>{copied ? 'Link Copied!' : 'Copy Share Link'}</span>
+                </button>
+              </div>
+              <div className="p-2 bg-slate-50 rounded-lg border border-slate-200 font-mono text-[11px] text-slate-600 break-all select-all flex items-center justify-between">
+                <span>{APP_URL}</span>
+                <a
+                  href={APP_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-slate-400 hover:text-slate-700 ml-2"
+                  title="Open live link"
+                >
+                  <ExternalLink className="w-3.5 h-3.5" />
+                </a>
+              </div>
             </div>
           </div>
         )}

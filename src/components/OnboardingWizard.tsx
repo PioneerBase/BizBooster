@@ -20,7 +20,8 @@ import {
   Compass,
   FileCheck,
   ExternalLink,
-  Scale
+  Scale,
+  BookOpen
 } from 'lucide-react';
 import { BusinessProfile } from '../types/compliance';
 import { MARYLAND_COUNTIES } from '../data/countyData';
@@ -89,7 +90,7 @@ export const OnboardingWizard: React.FC<OnboardingWizardProps> = ({
       <div className="bg-white rounded-2xl max-w-3xl w-full shadow-2xl border border-slate-200 overflow-hidden flex flex-col max-h-[95vh] animate-in fade-in zoom-in-95">
         
         {/* Wizard Header Bar */}
-        <div className="bg-slate-900 text-white px-6 py-5 shrink-0 flex items-center justify-between">
+        <div className="bg-slate-900 text-white px-6 py-5 shrink-0 flex items-center justify-between gap-4">
           <div className="space-y-1">
             <div className="flex items-center gap-2 text-xs font-semibold text-amber-400 uppercase tracking-wider">
               <span>BizBooster Maryland</span>
@@ -101,12 +102,25 @@ export const OnboardingWizard: React.FC<OnboardingWizardProps> = ({
             </h1>
           </div>
 
-          <button
-            onClick={onSkip}
-            className="text-xs text-slate-400 hover:text-white underline cursor-pointer"
-          >
-            Skip to Dashboard
-          </button>
+          <div className="flex items-center gap-3">
+            <button
+              type="button"
+              onClick={() => onOpenPdfPage(1)}
+              className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-amber-300 hover:text-white bg-slate-800 hover:bg-slate-700 border border-amber-500/30 rounded-lg transition-colors cursor-pointer"
+              title="Open the official 8-page Maryland Startup Guide"
+            >
+              <FileText className="w-3.5 h-3.5 text-amber-400" />
+              <span className="hidden sm:inline">Maryland Startup Guide (PDF)</span>
+              <span className="sm:hidden">Guide PDF</span>
+            </button>
+
+            <button
+              onClick={onSkip}
+              className="text-xs text-slate-400 hover:text-white underline cursor-pointer"
+            >
+              Skip
+            </button>
+          </div>
         </div>
 
         {/* Step Progress Indicator (Clean typography, no pill badges) */}
@@ -583,6 +597,81 @@ export const OnboardingWizard: React.FC<OnboardingWizardProps> = ({
                   <div>• <strong>Clerk Jurisdiction:</strong> {formData.countyOrCity}</div>
                   <div>• <strong>Trader’s License:</strong> {formData.hasRetailInventory ? 'Required (Goods Sold)' : 'Exempt (Service-Only)'}</div>
                   <div>• <strong>FAMLI 2027 Status:</strong> {formData.employeeCount < 15 ? 'Small Employer (0% employer share)' : 'Standard Employer (0.45% employer share)'}</div>
+                </div>
+
+                {/* Official Maryland Startup Guide Onboarding Documents */}
+                <div className="pt-2 space-y-2">
+                  <div className="flex items-center justify-between">
+                    <span className="text-xs font-bold text-slate-900 flex items-center gap-1.5">
+                      <BookOpen className="w-4 h-4 text-amber-600" />
+                      <span>Official Startup Guide Onboarding Documents (8 Pages)</span>
+                    </span>
+                    <button
+                      type="button"
+                      onClick={() => onOpenPdfPage(1)}
+                      className="text-[11px] font-semibold text-amber-700 hover:text-amber-800 underline cursor-pointer"
+                    >
+                      Open Full Guide PDF
+                    </button>
+                  </div>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
+                    <button
+                      type="button"
+                      onClick={() => onOpenPdfPage(2)}
+                      className="text-left p-2.5 rounded-lg border border-slate-200 bg-white hover:border-amber-400 hover:bg-amber-50/50 transition-all cursor-pointer group"
+                    >
+                      <div className="flex items-center justify-between font-semibold text-slate-800 group-hover:text-amber-950">
+                        <span>1. Master Statutory Checklist</span>
+                        <span className="text-[10px] font-mono text-amber-700 bg-amber-100 px-1.5 py-0.5 rounded">P. 2</span>
+                      </div>
+                      <p className="text-[11px] text-slate-500 mt-0.5 line-clamp-1">
+                        Sections A, B, & C statutory sequences & agencies.
+                      </p>
+                    </button>
+
+                    <button
+                      type="button"
+                      onClick={() => onOpenPdfPage(3)}
+                      className="text-left p-2.5 rounded-lg border border-slate-200 bg-white hover:border-amber-400 hover:bg-amber-50/50 transition-all cursor-pointer group"
+                    >
+                      <div className="flex items-center justify-between font-semibold text-slate-800 group-hover:text-amber-950">
+                        <span>2. Trader's License Fee Schedule</span>
+                        <span className="text-[10px] font-mono text-amber-700 bg-amber-100 px-1.5 py-0.5 rounded">P. 3</span>
+                      </div>
+                      <p className="text-[11px] text-slate-500 mt-0.5 line-clamp-1">
+                        Statewide inventory tiers & Baltimore City rates.
+                      </p>
+                    </button>
+
+                    <button
+                      type="button"
+                      onClick={() => onOpenPdfPage(4)}
+                      className="text-left p-2.5 rounded-lg border border-slate-200 bg-white hover:border-amber-400 hover:bg-amber-50/50 transition-all cursor-pointer group"
+                    >
+                      <div className="flex items-center justify-between font-semibold text-slate-800 group-hover:text-amber-950">
+                        <span>3. Clerk Application Packet</span>
+                        <span className="text-[10px] font-mono text-amber-700 bg-amber-100 px-1.5 py-0.5 rounded">P. 4</span>
+                      </div>
+                      <p className="text-[11px] text-slate-500 mt-0.5 line-clamp-1">
+                        4-part dossier for Circuit Court Clerk licensing.
+                      </p>
+                    </button>
+
+                    <button
+                      type="button"
+                      onClick={() => onOpenPdfPage(6)}
+                      className="text-left p-2.5 rounded-lg border border-slate-200 bg-white hover:border-amber-400 hover:bg-amber-50/50 transition-all cursor-pointer group"
+                    >
+                      <div className="flex items-center justify-between font-semibold text-slate-800 group-hover:text-amber-950">
+                        <span>4. FAMLI Exemption & Rates</span>
+                        <span className="text-[10px] font-mono text-amber-700 bg-amber-100 px-1.5 py-0.5 rounded">P. 6</span>
+                      </div>
+                      <p className="text-[11px] text-slate-500 mt-0.5 line-clamp-1">
+                        Nov 15, 2026 DOI deadline & Jan 1, 2027 start.
+                      </p>
+                    </button>
+                  </div>
                 </div>
 
                 <div className="p-2.5 bg-emerald-50 rounded-lg border border-emerald-200 text-emerald-900 text-[11px]">

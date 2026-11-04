@@ -16,7 +16,11 @@ import {
   RotateCcw,
   FileDown,
   ShieldCheck,
-  Scale
+  Scale,
+  BookOpen,
+  Download,
+  ChevronDown,
+  ChevronUp
 } from 'lucide-react';
 import { ChecklistItem, ComplianceStatus } from '../types/compliance';
 
@@ -45,6 +49,7 @@ export const ChecklistView: React.FC<ChecklistViewProps> = ({
   const [activeStatus, setActiveStatus] = useState<string>('all');
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [expandedItemId, setExpandedItemId] = useState<string | null>(null);
+  const [isGuideDrawerOpen, setIsGuideDrawerOpen] = useState<boolean>(false);
 
   // Filter sections
   const sections = [
@@ -207,6 +212,117 @@ export const ChecklistView: React.FC<ChecklistViewProps> = ({
             Manage Device Backup & Data
           </button>
         </div>
+      </div>
+
+      {/* Official Maryland Startup Guide Banner & Quick Chapter Navigator */}
+      <div className="bg-amber-50/70 border border-amber-200/80 rounded-xl p-4 sm:p-5 shadow-xs">
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div className="flex items-start gap-3">
+            <div className="p-2.5 bg-amber-600 text-white rounded-xl shadow-xs shrink-0 mt-0.5">
+              <BookOpen className="w-5 h-5" />
+            </div>
+            <div>
+              <div className="flex items-center gap-2">
+                <span className="text-[10px] font-bold uppercase tracking-wider text-amber-800 bg-amber-200/70 px-2 py-0.5 rounded">
+                  Official Statewide Source Document
+                </span>
+                <span className="text-xs text-amber-900/60 font-mono hidden sm:inline">8 Pages · Maryland Compliance</span>
+              </div>
+              <h2 className="text-base sm:text-lg font-bold text-slate-900 mt-0.5">
+                Maryland Small Business Startup Checklist & Licensing Guide
+              </h2>
+              <p className="text-xs text-slate-600 mt-1 max-w-2xl leading-relaxed">
+                The statutory roadmap underpinning this checklist. Access official sequencing, Circuit Court Trader’s License formulas, Clerk application dossiers, and 2026–2028 FAMLI timelines.
+              </p>
+            </div>
+          </div>
+
+          <div className="flex flex-wrap items-center gap-2 shrink-0">
+            <button
+              onClick={() => onOpenPdfPage(1)}
+              className="flex items-center gap-1.5 px-3.5 py-2 text-xs font-bold text-white bg-amber-600 hover:bg-amber-700 rounded-lg shadow-xs transition-colors cursor-pointer"
+            >
+              <BookOpen className="w-4 h-4" />
+              <span>Read Full Guide (PDF)</span>
+            </button>
+
+            <a
+              href={`${import.meta.env.BASE_URL || './'}assets/aistudio/Maryland_Startup_Guide_431a0bbf.pdf`}
+              download="Maryland_Startup_Guide.pdf"
+              className="flex items-center gap-1.5 px-3 py-2 text-xs font-semibold text-slate-700 hover:text-slate-900 bg-white hover:bg-slate-100 border border-slate-200 rounded-lg transition-colors cursor-pointer"
+            >
+              <Download className="w-3.5 h-3.5" />
+              <span className="hidden sm:inline">Download PDF</span>
+            </a>
+
+            <button
+              onClick={() => setIsGuideDrawerOpen(!isGuideDrawerOpen)}
+              className="flex items-center gap-1 px-2.5 py-2 text-xs font-medium text-slate-700 bg-white hover:bg-slate-100 border border-slate-200 rounded-lg transition-colors cursor-pointer"
+              title="Toggle chapter quick drawer"
+            >
+              <span>{isGuideDrawerOpen ? 'Hide Chapters' : 'View Chapters'}</span>
+              {isGuideDrawerOpen ? <ChevronUp className="w-3.5 h-3.5" /> : <ChevronDown className="w-3.5 h-3.5" />}
+            </button>
+          </div>
+        </div>
+
+        {/* 8-Page Quick Jump Bar */}
+        <div className="mt-3.5 pt-3 border-t border-amber-200/60">
+          <div className="text-[11px] font-bold text-slate-700 uppercase tracking-wider mb-2">
+            Jump to Guide Chapter in Checklist:
+          </div>
+          <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-1.5">
+            {[
+              { page: 1, label: 'P.1 Sequence & SDAT' },
+              { page: 2, label: 'P.2 Master Checklist' },
+              { page: 3, label: 'P.3 Trader’s License' },
+              { page: 4, label: 'P.4 Clerk Dossier' },
+              { page: 5, label: 'P.5 Hiring & Workers’ Comp' },
+              { page: 6, label: 'P.6 FAMLI Deadlines' },
+              { page: 7, label: 'P.7 Launch Timeline' },
+              { page: 8, label: 'P.8 Agency Portals' },
+            ].map((btn) => (
+              <button
+                key={btn.page}
+                onClick={() => onOpenPdfPage(btn.page)}
+                className="text-left px-2 py-1.5 rounded-md bg-white/80 hover:bg-amber-100/80 border border-amber-200/60 text-[11px] font-medium text-slate-800 transition-colors flex items-center justify-between cursor-pointer group"
+              >
+                <span className="truncate">{btn.label}</span>
+                <ChevronRight className="w-3 h-3 text-slate-400 group-hover:text-amber-700 shrink-0 ml-1" />
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Expandable Chapter Summary Drawer */}
+        {isGuideDrawerOpen && (
+          <div className="mt-3 pt-3 border-t border-amber-200/60 grid grid-cols-1 md:grid-cols-2 gap-2 text-xs animate-in fade-in">
+            <div className="p-3 bg-white rounded-lg border border-amber-200/60 space-y-1">
+              <span className="font-bold text-slate-900 block">Section A: Location & Legal Formations (Pages 1–2)</span>
+              <p className="text-slate-600 text-[11px] leading-relaxed">
+                Covers state entity filings with SDAT Business Express, resident agent designation, trade names, and prerequisite zoning compliance before signing commercial leases.
+              </p>
+            </div>
+            <div className="p-3 bg-white rounded-lg border border-amber-200/60 space-y-1">
+              <span className="font-bold text-slate-900 block">Section B: Tax Accounts & Registrations (Page 2)</span>
+              <p className="text-slate-600 text-[11px] leading-relaxed">
+                Federal Employer Identification Number (EIN) with IRS, combined registration application (Form CRA) with Comptroller of Maryland for Sales & Use Tax and Employer Withholding.
+              </p>
+            </div>
+            <div className="p-3 bg-white rounded-lg border border-amber-200/60 space-y-1">
+              <span className="font-bold text-slate-900 block">Section C: Circuit Court Clerk Licensing (Pages 3–4)</span>
+              <p className="text-slate-600 text-[11px] leading-relaxed">
+                Trader’s License statutory inventory brackets ($15 to $2,125), required 4-part application packet, local health department food permits, and Fire Marshal inspections.
+              </p>
+            </div>
+            <div className="p-3 bg-white rounded-lg border border-amber-200/60 space-y-1">
+              <span className="font-bold text-slate-900 block">Section D: Hiring, Workers’ Comp & FAMLI (Pages 5–7)</span>
+              <p className="text-slate-600 text-[11px] leading-relaxed">
+                Mandatory Workers’ Compensation Form C-24 yellow poster, Maryland Directory of New Hires (20-day rule), Nov 15 2026 FAMLI DOI exemption, and Jan 1 2027 payroll start.
+              </p>
+            </div>
+          </div>
+        )}
       </div>
 
       {/* Filter and Search Bar */}
